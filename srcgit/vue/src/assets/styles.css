@@ -1,0 +1,907 @@
+/* Определение CSS переменных */
+:root {
+    /* Dark theme (default) */
+    --primary-bg-color: #1a1a1a;
+    --secondary-bg-color: #2a2a2a;
+    --card-bg-color: #323232;
+    --text-color: #ffffff;
+    --secondary-text-color: #ebebeb;
+    --link-color: #4dabf5;
+    --link-hover-color: #75bdff;
+    --border-color: #444444;
+    --button-bg-color: #2a74c8;
+    --button-hover-bg-color: #3986da;
+    --button-text-color: #ffffff;
+    --input-bg-color: rgba(70, 70, 70, 0.7);
+    --input-border-color: #555555;
+    --input-text-color: #ffffff;
+    --input-placeholder: #888888;
+    --theme-icon-color: #FFFFFF;
+    --empty-card-color: #404040;
+    --nav-text-color: #f0f0f0;
+    --menu-hover-bg-color: rgba(255, 255, 255, 0.1);
+    --nav-bg-color: #2a2a2a;
+    --dropdown-bg: #323232;
+    --dropdown-hover-bg: #404040;
+    --dropdown-text: #f0f0f0;
+    --dropdown-shadow: rgba(0, 0, 0, 0.5);
+    --accent-color: #4dabf5;
+    --bg-image: url('../assets/img/mainblack.png');
+}
+
+/* Стили для светлой темы */
+[data-theme="light"] {
+    --primary-bg-color: #f8f9fa;
+    --secondary-bg-color: #ffffff;
+    --card-bg-color: #ffffff;
+    --text-color: #212529;
+    --secondary-text-color: #495057;
+    --link-color: #0b5ed7;
+    --link-hover-color: #0a58ca;
+    --border-color: #dee2e6;
+    --button-bg-color: #0d6efd;
+    --button-hover-bg-color: #0b5ed7;
+    --button-text-color: #ffffff;
+    --input-bg-color: rgba(240, 240, 240, 0.7);
+    --input-border-color: #ced4da;
+    --input-text-color: #212529;
+    --input-placeholder: #6c757d;
+    --theme-icon-color: #333333;
+    --empty-card-color: #e9ecef;
+    --nav-text-color: #212529;
+    --menu-hover-bg-color: rgba(0, 0, 0, 0.05);
+    --nav-bg-color: #ffffff;
+    --dropdown-bg: #ffffff;
+    --dropdown-hover-bg: #f8f9fa;
+    --dropdown-text: #212529;
+    --dropdown-shadow: rgba(0, 0, 0, 0.15);
+    --accent-color: #0b5ed7;
+    --bg-image: url('../assets/img/mainwhite.png');
+}
+
+/* Основные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--primary-bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-container {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Navigation styles */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    position: relative;
+    z-index: 100;
+    background: var(--secondary-bg-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--nav-text-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+}
+
+.nav-link:hover {
+    color: var(--link-color);
+    background: var(--menu-hover-bg-color);
+}
+
+/* Language selector styles */
+.language-selector {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-left: 20px;
+}
+
+.language-button {
+    background: transparent;
+    border: none;
+    color: var(--nav-text-color);
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.language-button span {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.language-button img {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.language-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--dropdown-bg);
+    border-radius: 8px;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    display: none;
+    flex-direction: column;
+    width: 180px;
+    box-shadow: 0 4px 12px var(--dropdown-shadow);
+    z-index: 1000;
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    color: var(--dropdown-text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.language-option img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.language-button:hover {
+    color: var(--link-color);
+    background: var(--menu-hover-bg-color);
+}
+
+.language-option:hover {
+    background: var(--dropdown-hover-bg);
+    color: var(--link-color);
+}
+
+.language-dropdown.active {
+    display: flex;
+}
+
+/* Main content styles */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: calc(100vh - 80px);
+    padding: 0 15% 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.title-container {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.main-title {
+    font-size: 5.5rem;
+    font-weight: 800;
+    margin: 0;
+    color: white;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    position: relative;
+    letter-spacing: -2px;
+    z-index: 5;
+}
+
+[data-theme="light"] .main-title {
+    color: #212529;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+    margin-bottom: 3rem;
+    max-width: 600px;
+}
+
+.subtitle p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--secondary-text-color);
+}
+
+.cta-container {
+    margin-top: 1rem;
+}
+
+.main-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+}
+
+.main-button:hover {
+    background-color: var(--button-hover-bg-color);
+    transform: translateY(-2px);
+}
+
+/* Общие стили навигации */
+.nav-left, .nav-right {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    color: var(--nav-text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    padding: 0.5rem;
+}
+
+.nav-link:hover {
+    color: var(--link-color);
+}
+
+.nav-link.active {
+    border-bottom: 2px solid var(--text-color);
+}
+
+/* Стили для страницы входа */
+.login-container {
+    min-height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--card-bg-color);
+    backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid var(--border-color);
+    z-index: 2;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem;
+    padding-left: 2.5rem;
+    background: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    border-radius: 8px;
+    color: var(--input-text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input::placeholder {
+    color: var(--input-placeholder);
+}
+
+.form-input:focus {
+    border-color: var(--link-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(77, 171, 245, 0.2);
+}
+
+.input-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--input-placeholder);
+}
+
+.login-button {
+    background: var(--button-bg-color);
+    color: var(--button-text-color);
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: 500;
+}
+
+.login-button:hover {
+    background: var(--button-hover-bg-color);
+}
+
+.create-account {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.create-link {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.create-link:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+.success-message {
+    color: #28a745;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.error {
+    border-color: #dc3545 !important;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    margin-left: 0.5rem;
+}
+
+/* Стили для мобильного устройства */
+.input-focused {
+    transform: translate(-50%, -65%);
+}
+
+.very-small-screen {
+    padding: 2rem;
+}
+
+.very-small-screen h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.mobile-device .login-box {
+    max-width: 90%;
+}
+
+/* Декоративные элементы */
+.decoration-wave {
+    position: absolute;
+    bottom: -5%;
+    right: -5%;
+    width: 40%;
+    height: 50%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    z-index: 0;
+}
+
+.decoration-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 40%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: rotate(180deg);
+    z-index: 0;
+}
+
+/* Стили для страницы регистрации */
+.register-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--card-bg-color);
+    backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid var(--border-color);
+    z-index: 2;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.register-button {
+    background: var(--button-bg-color);
+    color: var(--button-text-color);
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+}
+
+.register-button:hover {
+    background: var(--button-hover-bg-color);
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Стили для страницы профиля */
+.profile-container {
+    min-height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--card-bg-color);
+    backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid var(--border-color);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-avatar {
+    margin-bottom: 2rem;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1.5rem;
+}
+
+.avatar-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: var(--empty-card-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.initials {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-color);
+    user-select: none;
+}
+
+#avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: none;
+}
+
+.avatar-upload {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--button-bg-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    color: white;
+    font-size: 1rem;
+}
+
+.avatar-upload input {
+    display: none;
+}
+
+.avatar-upload i {
+    pointer-events: none;
+}
+
+.avatar-upload:hover {
+    background: var(--button-hover-bg-color);
+}
+
+.name-input {
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    transition: border-color 0.3s ease;
+}
+
+.name-input::placeholder {
+    color: var(--input-placeholder);
+    opacity: 0.7;
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
+.name-input:focus::placeholder {
+    opacity: 0.5;
+}
+
+.name-input:focus {
+    outline: none;
+    border-color: var(--link-color);
+}
+
+.name-input:hover {
+    border-color: var(--link-hover-color);
+}
+
+.control-panel {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--secondary-bg-color);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+.control-btn:hover {
+    background: var(--menu-hover-bg-color);
+}
+
+.control-btn.active {
+    background: var(--button-bg-color);
+}
+
+.control-btn.muted {
+    background: #dc3545;
+}
+
+.connect-btn {
+    padding: 0.8rem 2rem;
+    background: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.connect-btn:hover {
+    background: var(--button-hover-bg-color);
+    transform: translateY(-2px);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.connect-btn:hover {
+    animation: pulse 1.5s infinite;
+}
+
+.profile-box::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: -80px;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(77, 171, 245, 0.2) 0%, rgba(77, 171, 245, 0.1) 50%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* Стили для страницы конференции */
+.conference-container {
+    min-height: 100vh;
+    width: 100%;
+    background: var(--primary-bg-color);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.participants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    flex-grow: 1;
+    margin-bottom: 5rem;
+}
+
+.participant-card {
+    background: var(--card-bg-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 220px;
+    position: relative;
+    animation: joinCall 0.5s ease-out;
+}
+
+.participant-video {
+    width: 100%;
+    height: 100%;
+    background: var(--empty-card-color);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.participant-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.participant-avatar .avatar-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.participant-initials {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.participant-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.participant-name {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.participant-controls {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.conference-controls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--secondary-bg-color);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.controls-left,
+.controls-right {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.controls-center {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.control-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--secondary-bg-color);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.control-btn:hover {
+    background: var(--menu-hover-bg-color);
+}
+
+.control-btn.active {
+    background: var(--button-bg-color);
+}
+
+.control-btn.muted {
+    background: #dc3545;
+}
+
+.controls-center .control-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    padding: 0.8rem;
+    width: auto;
+    height: auto;
+}
+
+.controls-center .control-btn span {
+    font-size: 0.75rem;
+    margin-top: 0.3rem;
+}
+
+.end-call-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #dc3545;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.end-call-btn:hover {
+    background: #c82333;
+}
+
+@keyframes joinCall {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+} 
